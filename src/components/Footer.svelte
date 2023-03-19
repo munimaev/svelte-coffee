@@ -54,7 +54,6 @@
       left: 0;
       position: fixed;
       width: 100%;
-      width: auto;
     }
   }
 
@@ -67,6 +66,7 @@
     height: 60px;
     padding: 0;
     width: 60px;
+    margin: 0 auto;
 
     &:disabled {
       cursor: not-allowed;
