@@ -1,41 +1,46 @@
 <script lang="ts">
   export let note: string;
   let noteLowerCase = note.toLocaleLowerCase();
-  let letterWeights:number[] = [];
+  let codes: number[] = [];
+
   for (let i = 0; i < 2; i++) {
     const code = noteLowerCase.charCodeAt(i) - 97;
     // check if it is a letter
     if (code >= 0 && code <= 25) {
-      letterWeights.push(code);
+      codes.push(code);
     } else {
-      letterWeights.push(12.5);
+      codes.push(12.5);
     }
   }
 
-  const bgColor = Math.floor((letterWeights[1] / 25) * 360 + (letterWeights[0] / 25) * 360/25);
+  const bgColor = Math.floor(
+    (codes[1] / 25) * 360 + ((codes[0] / 25) * 360) / 25
+  );
 </script>
 
 <div
   class="note"
-  style="background-color:hsl({bgColor} 35% 80% / 1);border-color:hsl({bgColor} 35% 65% / 1);"
-  >{note}</div
+  style="background-color:hsl({bgColor} 35% 80% / 1); border-color:hsl({bgColor} 35% 65% / 1);"
 >
+  {note}
+</div>
 
 <style lang="less">
-  @import '../styles/common.less';
+  @import "../styles/variables.less";
 
   .note {
-    height: 1.5em;
-    text-align: center;
-    padding: 0 10px;
-    margin-left: 10px;
     border-radius: 0.75em;
-    margin-bottom: @cardInfoPadding;
     border: 1px solid;
+    height: 1.5em;
     line-height: 1.3em;
-    white-space: nowrap;
+    margin-bottom: @commonPadding;
+    margin-left: 0.75em;
     min-width: 100px;
+    padding: 0 1em;
+    text-align: center;
+    white-space: nowrap;
   }
+
   .note:first-child {
     margin-left: 0;
   }

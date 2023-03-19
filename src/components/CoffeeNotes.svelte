@@ -2,50 +2,66 @@
   import { fade } from "svelte/transition";
   import CoffeeNote from "./CoffeeNote.svelte";
   export let notes: string[];
+
+  let scrollable: HTMLElement;
+
+  function horizontalScroll(event): void {
+    scrollable.scrollLeft += event.deltaY + event.deltaX;
+  }
 </script>
 
-<div class="notes"  in:fade="{{delay: 500}}">
+<div
+  class="notes"
+  in:fade={{ delay: 500 }}
+  on:wheel|preventDefault={horizontalScroll}
+  bind:this={scrollable}
+>
   <div class="scroll">
-    {#each notes as note (note) }
-      <CoffeeNote {note}/>
+    {#each notes as note (note)}
+      <CoffeeNote {note} />
     {/each}
   </div>
 </div>
 
 <style lang="less">
-  @import '../styles/common.less';
+  @import "../styles/variables.less";
 
   .notes {
     font-size: small;
-    height: calc(1.5em + @cardInfoPadding);
-    overflow: scroll;
-    position: relative;
+    height: calc(1.5em + @commonPadding);
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
+
   .scroll {
     display: flex;
-    position: relative;
     width: fit-content;
   }
+
   .scroll::before {
-    content: '';
-    background: linear-gradient(90deg, @cardColor 15%, transparent 100%);
-    position: sticky;
-    z-index: 10;
+    background: linear-gradient(90deg, @colorSecondaryLighter 15%, transparent 100%);
+    content: "";
+    display: block;
+    height: 1.5em;
     left: 0;
-    display: block;
-    height: 1.5em;
-    min-width: @cardInfoPadding;
-  }
-  .scroll::after {
-    content: '';
-    height: 1.5em;
-    background: linear-gradient(90deg, transparent 0%,  @cardColor 85%);
+    min-width: @commonPadding;
     position: sticky;
     z-index: 10;
-    right: 0;
-    display: block;
-    min-width: @cardInfoPadding;
   }
 
+  .scroll::after {
+    background: linear-gradient(90deg, transparent 0%, @colorSecondaryLighter 85%);
+    content: "";
+    display: block;
+    height: 1.5em;
+    min-width: @commonPadding;
+    position: sticky;
+    right: 0;
+    z-index: 10;
+  }
 </style>
-

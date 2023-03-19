@@ -2,17 +2,17 @@
   import { onMount, onDestroy } from "svelte";
   import { fetchCoffee, coffeeLoading } from "../stores/coffeesStore";
 
-  let interval: NodeJS.Timer = null;
+  let interval: NodeJS.Timer;
 
-  onMount( () => {
-    interval = setInterval(() => fetchCoffee(true), 30000)
-	});
+  onMount(() => {
+    interval = setInterval(() => fetchCoffee(true), 30000);
+  });
 
   onDestroy(() => {
     clearInterval(interval);
   });
 
-  function clickHandler() {
+  function clickHandler(): void {
     if ($coffeeLoading) {
       return;
     }
@@ -24,95 +24,99 @@
 
 <footer>
   <button class="round" on:click={clickHandler} disabled={$coffeeLoading}>
-    <span class="plus">+</span>
+    <div class="plus" />
   </button>
 </footer>
 
 <style lang="less">
-  @import "../styles/common.less";
+  @import "../styles/variables.less";
+  @import "../styles/mixins.less";
 
   footer {
-    position: fixed;
-    z-index: 200;
-    bottom: 0;
-    left: calc(50% - 45px);
-    width: 90px;
-    display: block;
-    text-align: center;
-    margin: 15px auto 0;
-    background-color: @cardColor;
-    padding: @cardInfoPadding;
+    background-color: @colorSecondaryLighter;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
+    bottom: 0;
+    display: block;
+    left: calc(50% - 45px);
+    margin: 15px auto 0;
+    padding: @commonPadding;
+    position: fixed;
+    width: 90px;
+    z-index: 200;
     .shadow();
   }
 
   @media only screen and (max-width: @thresholdMobile) {
     footer {
-      width: auto;
-      position: fixed;
+      border-radius: 0;
       bottom: 0;
       left: 0;
+      position: fixed;
       width: 100%;
-      border-radius: 0;
+      width: auto;
     }
   }
 
   .round {
-    color: #fffafd;
-    display: block;
-    cursor: pointer;
-    background-color: @colorCoffee;
-    height: 60px;
-    width: 60px;
+    background-color: @colorBgGrey;
     border-radius: 50%;
-    line-height: 47px;
-
-    margin: 0 auto;
-    background: rgb(50, 19, 18);
-    background-image: radial-gradient(
-      circle,
-      rgba(50, 19, 18, 1) 56%,
-      rgba(255, 255, 255, 0) 56%,
-      rgba(255, 255, 255, 0) 64%,
-      rgba(50, 19, 18, 1) 64%,
-      rgba(50, 19, 18, 1) 100%
-    );
-    background-color: #fff;
+    border: 3px solid @colorPrimary;
+    cursor: pointer;
+    display: block;
+    height: 60px;
+    padding: 0;
+    width: 60px;
 
     &:disabled {
-      opacity: 0.5;
       cursor: not-allowed;
+      opacity: 0.5;
     }
   }
+
   .round:not(:disabled):hover {
     filter: brightness(1.5);
   }
+
   .round:not(:disabled):active {
     filter: brightness(0.9);
   }
 
   @media only screen and (max-width: @thresholdMobile) {
     .round {
-    height: 60px;
-    width: 60px;
-    line-height: 47px;
-
-    background-image: radial-gradient(
-      circle,
-      rgba(50, 19, 18, 1) 56%,
-      rgba(255, 255, 255, 0) 56%,
-      rgba(255, 255, 255, 0) 64%,
-      rgba(50, 19, 18, 1) 64%,
-      rgba(50, 19, 18, 1) 100%
-    );
-    background-color: #fff;
+      height: 60px;
+      width: 60px;
+    }
   }
-}
-  
+
   .plus {
-    font-size: 300%;
-  }
+    background-color: @colorPrimary;
+    border-radius: 50%;
+    display: block;
+    height: 48px;
+    margin: auto;
+    position: relative;
+    width: 48px;
 
-  
+    &::before {
+      background-color: @colorBgGrey;
+      content: "";
+      display: block;
+      height: 24px;
+      left: 22px;
+      position: absolute;
+      top: 12px;
+      width: 4px;
+    }
+    &::after {
+      background-color: @colorBgGrey;
+      content: "";
+      display: block;
+      height: 4px;
+      left: 12px;
+      position: absolute;
+      top: 22px;
+      width: 24px;
+    }
+  }
 </style>

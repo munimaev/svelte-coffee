@@ -1,4 +1,4 @@
-import "./global.css";
+import "./styles/global.less";
 
 import App from "./App.svelte";
 

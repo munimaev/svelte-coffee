@@ -50,9 +50,17 @@ module.exports = {
 				test: /\.css$/,
 				use: [
 					MiniCssExtractPlugin.loader,
-					'css-loader'
+					'css-loader',
 				]
 			},
+      {
+        test: /\.less$/,
+        use: [
+					MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader'
+        ]
+      },
 			{
 				// required to prevent errors from Svelte on Webpack 5+
 				test: /node_modules\/svelte\/.*\.mjs$/,
@@ -67,16 +75,6 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
 		}),
-    // svelte({
-    //   preprocess: sveltePreprocess(),
-    //   // enable run-time checks when not in production
-    //   dev: !production,
-    //   // we'll extract any component CSS out into
-    //   // a separate file — better for performance
-    //   css: css => {
-    //     css.write('public/bundle.css')
-    //   },
-    // }),
 	],
 	devtool: prod ? false : 'source-map',
 	devServer: {

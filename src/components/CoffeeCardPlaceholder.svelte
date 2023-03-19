@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import { coffeeAuto } from "../stores/coffeesStore";
+
   onMount(() => {
     if (!$coffeeAuto) {
       window.scrollTo({
@@ -15,13 +16,14 @@
 <div class="card loading" in:fly={{ y: 50 }} />
 
 <style lang="less">
-  @import "../styles/common.less";
+  @import "../styles/variables.less";
+  @import "../styles/mixins.less";
 
   .card {
-    width: 300px;
+    background-color: @colorSecondaryLighter;
+    border-radius: @commonPadding;
     height: 400px;
-    background-color: @cardColor;
-    border-radius: @cardInfoPadding;
+    width: 300px;
     .shadow();
     .loading();
     .spinner();

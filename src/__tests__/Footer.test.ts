@@ -7,16 +7,7 @@ import { tick } from "svelte";
 import "jest-fetch-mock";
 import Footer__SvelteComponent_ from "../components/Footer.svelte";
 import { coffeeLoading } from "../stores/coffeesStore";
-
-const mockCoffee = {
-  id: 3417,
-  uid: "9c772363-8362-48a2-b871-cdbbea018b86",
-  blend_name: "Blue Enlightenment",
-  origin: "Chiriqui, Panama",
-  variety: "Ethiopian Heirloom",
-  notes: "crisp, coating, black-tea,peanut, tobacco",
-  intensifier: "juicy",
-};
+import { mockCoffee } from "./mocks";
 
 describe("Footer", () => {
   beforeAll(() => {
@@ -39,7 +30,7 @@ describe("Footer", () => {
     jest.useRealTimers();
   });
 
-  it("should create setInterval after onMount", () => {
+  it("should make setInterval after onMount", () => {
     expect(setInterval).not.toHaveBeenCalled();
 
     render(Footer__SvelteComponent_);
@@ -62,11 +53,11 @@ describe("Footer", () => {
     expect(fetch).toHaveBeenCalledTimes(12);
   });
 
-  it("should reset time interval after click on button", async () => {
+  it("should reset the time interval after a click on the button", async () => {
     expect(clearInterval).not.toHaveBeenCalled();
 
     const { getByRole } = render(Footer__SvelteComponent_);
-    const button = getByRole("button");
+    const button = getByRole("button") as HTMLButtonElement;
 
     expect(setInterval).toHaveBeenCalledTimes(1);
     jest.advanceTimersByTime(20000);
@@ -86,7 +77,7 @@ describe("Footer", () => {
     expect(fetch).toHaveBeenCalledTimes(2);
   });
 
-  it("should make no request on after click on button during loading ", async () => {
+  it("should make no request after clicking on the button during the loading ", async () => {
     const { getByRole } = render(Footer__SvelteComponent_);
     const button = getByRole("button") as HTMLButtonElement;
 
