@@ -2,10 +2,10 @@
   import { onMount, onDestroy } from "svelte";
   import { fetchCoffee, coffeeLoading } from "../stores/coffeesStore";
 
-  let interval;
+  let interval: NodeJS.Timer = null;
 
   onMount( () => {
-    interval = setInterval(() => fetchCoffee(true), 30000);
+    interval = setInterval(() => fetchCoffee(true), 30000)
 	});
 
   onDestroy(() => {
@@ -13,6 +13,9 @@
   });
 
   function clickHandler() {
+    if ($coffeeLoading) {
+      return;
+    }
     fetchCoffee();
     clearInterval(interval);
     interval = setInterval(() => fetchCoffee(true), 30000);

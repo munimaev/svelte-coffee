@@ -5,6 +5,7 @@
   import { onMount } from "svelte";
   import Header from "./components/Header.svelte";
 
+  export let name;
 
   onMount( () => {
 		fetchCoffee(true);
@@ -13,6 +14,7 @@
 </script>
 
 <main>
+  {name}
   <Header />
   <CoffeeList />
   <RoundButton />
