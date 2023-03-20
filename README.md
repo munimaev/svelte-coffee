@@ -1,11 +1,3 @@
-# Svelte app - Random Coffee
-
-It is a test app created by using Svelte, TypeScript, Webpack, and Less.
-
-
-Demo 
-
-
 Svelte app - Random Coffee
 ====================
 
