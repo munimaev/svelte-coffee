@@ -1,64 +1,42 @@
-# svelte app
+# Svelte app - Random Coffee
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template-webpack svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+It is a test app created by using Svelte, TypeScript, Webpack, and Less.
 
 
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start webpack:
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
+Demo 
 
 
-## Deploying to the web
+Svelte app - Random Coffee
+====================
 
-### With [now](https://zeit.co/now)
+It is a test app created for testing skills in the used tech stack.
 
-Install `now` if you haven't already:
+#### Used technologies
 
-```bash
-npm install -g now
-```
+* Svelte
+* TypeScript
+* Webpack
+* Less
 
-Then, from within your project folder:
+There are a couple of tests of components using Jest.
 
-```bash
-now
-```
+#### Live Demo
 
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
+<a href="http://munimaev.github.io/svelte-coffee/">Grab some coffee!</a>
 
-### With [surge](https://surge.sh/)
+Приложение Svelte - Случайный кофе
+=========================
 
-Install `surge` if you haven't already:
+Это тестовое приложение, созданное для проверки навыков в используемом стеке технологий.
 
-```bash
-npm install -g surge
-```
+#### Использованные технлогии
 
-Then, from within your project folder:
+* Svelte
+* TypeScript
+* Webpack
+* Less
 
-```bash
-npm run build
-surge public
-```
+Есть пара тестов компонентов с использованием Jest.
+
+#### Демка
+<a href="http://munimaev.github.io/svelte-coffee/">Взять кофе!</a>
